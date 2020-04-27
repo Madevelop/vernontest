@@ -38,6 +38,7 @@ class InstrumentController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            //$instrument->setCreatedAt(new \DateTime());
             $entityManager->persist($instrument);
             $entityManager->flush();
 
