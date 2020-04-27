@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Instrument index{% endblock %}
+
+{% block body %}
+    <h1>Instrument index</h1>
+
+    <p>{{ mess }}</p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Created_at</th>
+                <th>Modified_at</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for instrument in instruments %}
+            <tr>
+                <td>{{ instrument.id }}</td>
+                <td>{{ instrument.title }}</td>
+                <td>{{ instrument.description }}</td>
+                <td>{{ instrument.createdAt ? instrument.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ instrument.modifiedAt ? instrument.modifiedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('instrument_show', {'id': instrument.id}) }}">show</a>
+                    <a href="{{ path('instrument_edit', {'id': instrument.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('instrument_new') }}">Create new</a>
+{% endblock %}

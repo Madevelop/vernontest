@@ -3,10 +3,25 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('asset/css/styles.css') }}">
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ path('homepage') }}">Home</a></li>
+                <li><a href="{{ path('contact') }}">Contact</a></li>
+                <li><a href="{{ path('mentions') }}">Mentions légales</a></li>
+            </ul>
+        </nav>
+    </header>
         {% block body %}{% endblock %}
+    <footer>
+
+
+    </footer>
         {% block javascripts %}{% endblock %}
     </body>
 </html>
