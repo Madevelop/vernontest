@@ -13,11 +13,13 @@ class InstrumentFixtures extends Fixture
         $instrument = new Instrument();
         $instrument->setTitle('Basse');
         $instrument->setDescription('the best one');
+        $instrument->setStatus('publish');
         $manager->persist($instrument);
 
         $instrument2 = new Instrument();
         $instrument2->setTitle('Guitare');
         $instrument2->setDescription('bof');
+        $instrument2->setStatus('draft');
         $manager->persist($instrument2);
 
         $manager->flush();

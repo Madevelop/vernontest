@@ -12,6 +12,7 @@
                 <th>Id</th>
                 <th>Title</th>
                 <th>Description</th>
+                <th>Status</th>
                 <th>Created_at</th>
                 <th>Modified_at</th>
                 <th>actions</th>
@@ -23,6 +24,7 @@
                 <td>{{ instrument.id }}</td>
                 <td>{{ instrument.title }}</td>
                 <td>{{ instrument.description }}</td>
+                <td>{{ instrument.status }}</td>
                 <td>{{ instrument.createdAt ? instrument.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ instrument.modifiedAt ? instrument.modifiedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>

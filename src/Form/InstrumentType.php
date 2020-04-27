@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Instrument;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -21,6 +22,12 @@ class InstrumentType extends AbstractType
             ->add('description',TextareaType::class)
             //->add('created_at')
             //->add('modified_at')
+            ->add('status',ChoiceType::class,array(
+                'choices'  => [
+                    'Publié'   => 'publish',
+                    'Brouilon' => 'draft',
+                ],
+            ))
         ;
     }
 

@@ -7,6 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\InstrumentRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Instrument
 {
@@ -45,11 +46,25 @@ class Instrument
      */
     private $modified_at;
 
+    /**
+     * @ORM\Column(type="string", length=20)
+     */
+    private $status;
+
 
     public function __construct()
     {
         $this->created_at = new \DateTime();
     }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function doActionPreUpdateInstrument()
+    {
+        $this->modified_at = new \DateTime();
+    }
+
 
     public function getId(): ?int
     {
@@ -100,6 +115,18 @@ class Instrument
     public function setModifiedAt(?\DateTimeInterface $modified_at): self
     {
         $this->modified_at = $modified_at;
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }
