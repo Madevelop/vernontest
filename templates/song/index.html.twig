@@ -12,6 +12,7 @@
                 <th>Title</th>
                 <th>Groupe</th>
                 <th>Album</th>
+                <th>Instruments</th>
                 <th>Created_at</th>
                 <th>Modified_at</th>
                 <th>actions</th>
@@ -24,6 +25,12 @@
                 <td>{{ song.title }}</td>
                 <td>{{ song.groupe }}</td>
                 <td>{{ song.album }}</td>
+                <td>
+                    {% for instrument in song.instruments %}
+                        {{ instrument.title }}
+                        {% if not loop.last %},{% endif %}
+                    {% endfor %}
+                </td>
                 <td>{{ song.createdAt ? song.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ song.modifiedAt ? song.modifiedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>

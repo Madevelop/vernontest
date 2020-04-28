@@ -23,5 +23,8 @@ class InstrumentFixtures extends Fixture
         $manager->persist($instrument2);
 
         $manager->flush();
+
+        $this->addReference('instru1', $instrument);
+        $this->addReference('instru2', $instrument2);
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -59,10 +61,16 @@ class Song
      */
     private $modified_at;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Instrument", inversedBy="songs")
+     */
+    private $instruments;
+
 
     public function __construct()
     {
         $this->created_at = new \DateTime();
+        $this->instruments = new ArrayCollection();
     }
 
     /**
@@ -134,6 +142,32 @@ class Song
     public function setModifiedAt(?\DateTimeInterface $modified_at): self
     {
         $this->modified_at = $modified_at;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Instrument[]
+     */
+    public function getInstruments(): Collection
+    {
+        return $this->instruments;
+    }
+
+    public function addInstrument(Instrument $instrument): self
+    {
+        if (!$this->instruments->contains($instrument)) {
+            $this->instruments[] = $instrument;
+        }
+
+        return $this;
+    }
+
+    public function removeInstrument(Instrument $instrument): self
+    {
+        if ($this->instruments->contains($instrument)) {
+            $this->instruments->removeElement($instrument);
+        }
 
         return $this;
     }

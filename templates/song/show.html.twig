@@ -31,6 +31,15 @@
                 <th>Modified_at</th>
                 <td>{{ song.modifiedAt ? song.modifiedAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
+
+            <tr>
+                <th>Instruments</th>
+                <td>
+                    {% for instrument in song.instruments %}
+                        <p>{{ instrument.title }}</p>
+                    {% endfor %}
+                </td>
+            </tr>
         </tbody>
     </table>
 
