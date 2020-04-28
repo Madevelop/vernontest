@@ -16,8 +16,16 @@
                 <li><a href="{{ path('homepage') }}">Home</a></li>
                 <li><a href="{{ path('contact') }}">Contact</a></li>
                 <li><a href="{{ path('mentions') }}">Mentions légales</a></li>
-                <li><a href="{{ path('instrument_index') }}">Instruments</a></li>
-                <li><a href="{{ path('song_index') }}">Chanson</a></li>
+                {% if is_granted('ROLE_USER') %}
+                    <li><a href="{{ path('app_logout') }}">Logout</a></li>
+                    <li>Bonjour {{ app.user.email }} </li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li><a href="{{ path('instrument_index') }}">Instruments</a></li>
+                        <li><a href="{{ path('song_index') }}">Chanson</a></li>
+                    {% endif %}
+                {% else %}
+                    <li><a href="{{ path('app_login') }}">Connexion</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>

@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/instrument")
+ * @Route("/admin/instrument")
  */
 class InstrumentController extends AbstractController
 {
